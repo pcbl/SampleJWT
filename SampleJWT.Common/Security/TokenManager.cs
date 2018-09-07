@@ -81,7 +81,8 @@ namespace SampleJWT.Security
             catch (Exception ex)
             {
                 //Log here the reason if needed!
-
+                //token would be returned in any way, so we must set it to null when no longer valid!!
+                validatedToken = null;
             }
 
             return validatedToken as JwtSecurityToken;
