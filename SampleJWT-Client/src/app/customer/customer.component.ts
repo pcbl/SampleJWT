@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { CustomerDto } from '../model/CustomerDto';
 import { CustomerService } from '../customer.service';
 
@@ -9,14 +9,29 @@ import { CustomerService } from '../customer.service';
 })
 export class CustomerComponent implements OnInit {
 
+  @Input() type:string;
+  
   public customers:CustomerDto[];
   
   constructor(private customerService:CustomerService) { }
 
   ngOnInit() {
-    this.customerService.PublicCustomers().then(data=>{
+    var call:Promise<CustomerDto[]>;
+    if(this.type=="special")
+    {
+      call = this.customerService.SpecialCustomers();
+    }
+    else if(this.type=="all")
+    {
+      call = this.customerService.AllCustomers();
+    }
+    else
+    {
+      call = this.customerService.PublicCustomers();
+    }
+    call.then(data=>{
       this.customers = data;
-    });
+  });
   }
 
 }

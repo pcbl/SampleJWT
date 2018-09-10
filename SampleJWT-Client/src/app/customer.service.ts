@@ -12,4 +12,14 @@ export class CustomerService {
   {
     return this.http.get<CustomerDto[]>(this.baseUrl+"GetPublicCustomers").toPromise();    
   }
+
+  public SpecialCustomers():Promise<CustomerDto[]>
+  {
+    return this.http.get<CustomerDto[]>(this.baseUrl+"GetSpecialCustomers").toPromise();    
+  }
+
+  public AllCustomers():Promise<CustomerDto[]>
+  {
+    return this.http.get<CustomerDto[]>(this.baseUrl+"GetAllCustomers").toPromise();    
+  }
 }
