@@ -7,7 +7,9 @@ namespace SampleJWT.WebApi
     {
         public static void Configure(HttpConfiguration config)
         {
+            var cors = new System.Web.Http.Cors.EnableCorsAttribute("*", "*", "*");
             // Web API configuration and services
+            config.EnableCors(cors);
 
             // Web API routes
             config.MapHttpAttributeRoutes();
