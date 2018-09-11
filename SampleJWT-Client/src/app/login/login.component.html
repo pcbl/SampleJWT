@@ -12,7 +12,8 @@
         <div class="form-group">
           <input type="password" class="form-control" id="inputPassword" placeholder="Password" formControlName="password">
         </div>       
-        <button type="submit" class="btn btn-primary">Login</button>
+        <span class="text-danger" *ngIf="working">{{errorMessage}}</span>
+        <button type="submit" *ngIf="!working" class="btn btn-primary">Login</button>
       </form>
       <span class="text-danger">{{message}}</span>
     </div>

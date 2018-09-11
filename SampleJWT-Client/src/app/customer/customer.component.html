@@ -1,3 +1,6 @@
+<h3>
+  {{Title()}}
+</h3>
 <table class="table">
   <thead>
     <tr>
@@ -16,3 +19,5 @@
     </tr>
   </tbody>
 </table>
+<img src="../../assets/images/3.gif" *ngIf="loading">
+<span class="text-danger" *ngIf="!loading">{{errorMessage}}</span>

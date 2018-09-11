@@ -1,12 +1,17 @@
-<h1>
-  Home - Public Customers
-</h1>
-<app-customer></app-customer>
-<h1>
-  Home - Special Customers
-</h1>
-<app-customer type="special"></app-customer>
-<h1>
-  Home - All Customers
-</h1>
-<app-customer type="all"></app-customer>
+<ngb-tabset>
+  <ngb-tab title="Simple">
+    <ng-template ngbTabContent>
+      <app-customer type="special"></app-customer>
+    </ng-template>
+  </ngb-tab>
+  <ngb-tab title="All">
+    <ng-template ngbTabContent>
+      <app-customer type="all"></app-customer>
+    </ng-template>
+  </ngb-tab>
+  <ngb-tab title="Public">
+    <ng-template ngbTabContent>
+      <app-customer></app-customer>
+    </ng-template>
+  </ngb-tab>
+</ngb-tabset>

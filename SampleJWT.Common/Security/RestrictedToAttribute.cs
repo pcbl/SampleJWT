@@ -68,7 +68,7 @@ namespace SampleJWT.Security
         private static void ShowAuthenticationError(HttpActionContext filterContext)
         {
             filterContext.Response = new HttpResponseMessage(HttpStatusCode.Unauthorized);
-            filterContext.Response.Content = new StringContent("Unable to access, Please login again");
+            filterContext.Response.Content = new StringContent("Access Denied! Please login!");
         }
 
         private bool IsWithinExpectedRoles(string[] rolesToCheck)

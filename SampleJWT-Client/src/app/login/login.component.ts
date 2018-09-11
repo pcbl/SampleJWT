@@ -12,7 +12,8 @@ import { LoginDto } from '../model/loginDto';
 export class LoginComponent implements OnInit {
   message:string;
   form;
-  constructor(private fb: FormBuilder,
+  public working:boolean = false;
+  constructor(private fb: FormBuilder,    
     private router: Router,
     private auth: AuthService) {
     this.form = fb.group({
@@ -28,7 +29,9 @@ export class LoginComponent implements OnInit {
       login.Domain="GFT.COM";
       login.UserName=this.form.value.userName;
       login.Password=this.form.value.password;
+      this.working = true;
       this.auth.login(login).then(data=>{
+        this.working = false;
         if(!data)
         {
           this.router.navigate(["home"]);
@@ -37,6 +40,9 @@ export class LoginComponent implements OnInit {
         {
           this.message = data;
         }
+      }).catch(ex=>{
+        this.working = false;
+        this.message = ex.message;;
       });
     }
   }
