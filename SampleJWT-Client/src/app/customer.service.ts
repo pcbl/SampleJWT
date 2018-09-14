@@ -18,8 +18,13 @@ export class CustomerService {
     return this.http.get<CustomerDto[]>(this.baseUrl+"GetSpecialCustomers").toPromise();    
   }
 
-  public AllCustomers():Promise<CustomerDto[]>
+  public AllCustomers(page:number,pageSize:number):Promise<CustomerDto[]>
   {
-    return this.http.get<CustomerDto[]>(this.baseUrl+"GetAllCustomers").toPromise();    
+    return this.http.get<CustomerDto[]>(this.baseUrl+"GetAllCustomers?page="+page+"&pageSize="+pageSize).toPromise();    
+  }
+
+  public CountAllCustomers():Promise<number>
+  {
+    return this.http.get<number>(this.baseUrl+"CountAllCustomers").toPromise();    
   }
 }

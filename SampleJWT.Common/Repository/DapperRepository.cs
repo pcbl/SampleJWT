@@ -39,5 +39,24 @@ namespace SampleJWT.Repository
                 return db.GetList<T>(predicate).ToList();
             }
         }
+
+        public IEnumerable<T> Get(IPredicate predicate, IList<ISort> sort, int page, int pageSize)
+        {
+            DapperExtensions.DapperExtensions.DefaultMapper = typeof(AnnotationCustomMapper<>);
+            using (IDbConnection db = new SqlConnection(SampleJWT.Properties.Settings.Default.DatabaseConnection))
+            {
+                
+                return db.GetPage<T>(predicate,sort,page,pageSize).ToList();
+            }
+        }
+
+        public long Count(IPredicate predicate)
+        {
+            DapperExtensions.DapperExtensions.DefaultMapper = typeof(AnnotationCustomMapper<>);
+            using (IDbConnection db = new SqlConnection(SampleJWT.Properties.Settings.Default.DatabaseConnection))
+            {
+                return db.Count<T>(predicate);
+            }
+        }
     }
 }

@@ -13,6 +13,10 @@ namespace SampleJWT.Repository
 
         IEnumerable<T> Get(IPredicate predicate);
 
+        IEnumerable<T> Get(IPredicate predicate, IList<ISort> sort, int page, int pageSize);
+
         T GetById(int id);
+
+        long Count(IPredicate predicate);
     }
 }

@@ -1,4 +1,5 @@
-﻿using SampleJWT.Dto;
+﻿using DapperExtensions;
+using SampleJWT.Dto;
 using SampleJWT.Security;
 using System;
 using System.Collections.Generic;
@@ -19,10 +20,25 @@ namespace SampleJWT.Services.Customer.Controllers
         }
 
         [Restricted(Roles = "User")]
-        public IEnumerable<SampleJWT.Model.Data.Customer> GetAllCustomers()
+        public IEnumerable<SampleJWT.Model.Data.Customer> GetAllCustomers(int page, int pageSize)
         {
             Repository.DapperRepository<SampleJWT.Model.Data.Customer> repo = new Repository.DapperRepository<SampleJWT.Model.Data.Customer>();
+            IList<ISort> sort = new List<ISort>
+                                    {
+                                        Predicates.Sort<SampleJWT.Model.Data.Customer>(c => c.Name)
+                                    };
+            
+
             return repo.Get(DapperExtensions.Predicates.Field<SampleJWT.Model.Data.Customer>(customer => customer.Type, DapperExtensions.Operator.Eq
+                     , "Normal"), sort, page, pageSize);
+        }
+
+        [Restricted(Roles = "User")]
+        [HttpGet()]
+        public long CountAllCustomers()
+        {
+            Repository.DapperRepository<SampleJWT.Model.Data.Customer> repo = new Repository.DapperRepository<SampleJWT.Model.Data.Customer>();            
+            return repo.Count(DapperExtensions.Predicates.Field<SampleJWT.Model.Data.Customer>(customer => customer.Type, DapperExtensions.Operator.Eq
                      , "Normal"));
         }
 

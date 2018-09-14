@@ -19,5 +19,6 @@
     </tr>
   </tbody>
 </table>
+<ngb-pagination [collectionSize]="size" [pageSize]="pageSize" size="sm" [(page)]="page" (pageChange)="onPageChange($event)" aria-label="Default pagination" *ngIf="isPaged"></ngb-pagination>
 <img src="../../assets/images/3.gif" *ngIf="loading">
 <span class="text-danger" *ngIf="!loading">{{errorMessage}}</span>
